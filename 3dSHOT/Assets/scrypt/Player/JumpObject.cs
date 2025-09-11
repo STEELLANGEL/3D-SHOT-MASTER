@@ -54,7 +54,6 @@ namespace Player
 
                 //_rb.freezeRotation = false;
             }
-
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -84,5 +83,4 @@ namespace Player
             _rb.linearVelocity = new Vector3(0, _jumpSpeed, 0);
         }
     }
-
 }
