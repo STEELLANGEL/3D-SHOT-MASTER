@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2233082326010155170
+--- !u!1 &8223787268136475130
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5139533235129766174}
-  - component: {fileID: 4986178213320073838}
+  - component: {fileID: 2229767524885989573}
+  - component: {fileID: 8091682050877575758}
   m_Layer: 0
-  m_Name: ROTATOR
+  m_Name: Float_Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5139533235129766174
+--- !u!4 &2229767524885989573
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2233082326010155170}
+  m_GameObject: {fileID: 8223787268136475130}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25, y: 31.13715, z: 21.40113}
+  m_LocalPosition: {x: -0.5, y: -1, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4986178213320073838
+--- !u!114 &8091682050877575758
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2233082326010155170}
+  m_GameObject: {fileID: 8223787268136475130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a7bc036e85ffaa45b3ee8b477735186, type: 3}
+  m_Script: {fileID: 11500000, guid: f8d7ca99d33187241a40cf1ffd3e15bc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ROTATOR
-  _target_Player: {fileID: 0}
-  _hunter_Enemy: {fileID: 0}
-  _rotSpeed: 3
-  _yNotRotation: 0
-  _lookAtTarget: 0
-  _rotToTarget: 1
-  _rotToTargetAngle: 0
-  _rotToAngle: 0
-  _customAngle: 90
+  m_EditorClassIdentifier: Assembly-CSharp::WaterFloat
+  _rb: {fileID: 0}
+  depthBetSub: 7
+  displacementAmt: 1
+  floaters: 4
+  waterDrag: 1
+  waterAngularDrag: 15
+  water: {fileID: 0}
