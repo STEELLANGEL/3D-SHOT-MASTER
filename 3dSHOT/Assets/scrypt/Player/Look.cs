@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerLook : MonoBehaviour
+    public class Look : MonoBehaviour
     {
         [SerializeField] private Transform _head;                                                    // сюда кидаем голову (камеру дочерне делаем) в инспекторе
         [SerializeField] private Transform _body;                                                    // сюда кидаем тело в инспекторе

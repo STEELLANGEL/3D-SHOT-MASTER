@@ -884,7 +884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7bc036e85ffaa45b3ee8b477735186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ROTATOR
-  _target_Player: {fileID: 0}
+  _target_Player: {fileID: 952933469}
   _hunter_Enemy: {fileID: 1314676054}
   _rotSpeed: 3
   _yNotRotation: 0

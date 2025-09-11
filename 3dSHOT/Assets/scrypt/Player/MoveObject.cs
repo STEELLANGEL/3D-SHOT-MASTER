@@ -3,7 +3,7 @@ using System;
 
 namespace Player
 {
-    public class MoveScrypt : MonoBehaviour
+    public class MoveObject : MonoBehaviour
     {
         [SerializeField] float _actualSpeed;
         [SerializeField] public float _run = 20f;
@@ -20,7 +20,7 @@ namespace Player
 
         Vector3 _moveVector;
 
-        private JumpPlayer _jumpPlayer; // переменная для обращения к другому скрипту (чтобы через нее взаимодействовать с переменными и методами другого скрипта
+        private JumpObject _jumpPlayer; // переменная для обращения к другому скрипту (чтобы через нее взаимодействовать с переменными и методами другого скрипта
 
         Rigidbody _rb;
 

@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Player
 {
-    public class JumpPlayer : MonoBehaviour
+    public class JumpObject : MonoBehaviour
     {
         Rigidbody _rb;
 
@@ -20,7 +20,7 @@ namespace Player
 
         [SerializeField] float _jumpImpulse = 15f;
 
-        MoveScrypt _moveScrypt;  // переменная для обращения к другому скрипту (чтобы через нее взаимодействовать с переменными и методами другого скрипта
+        MoveObject _moveScrypt;  // переменная для обращения к другому скрипту (чтобы через нее взаимодействовать с переменными и методами другого скрипта
 
         void Start()
         {
