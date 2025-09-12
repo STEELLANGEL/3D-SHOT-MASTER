@@ -28,8 +28,6 @@ namespace Enemy
                                                                                     // transform.eulerAngles = vector (0 horiz, random в игрек, 0 vertical)
                                                                                     // transform.eulerAngles - поворачивает в сторону вектора
         }
-
-
         private void Update()
         {
             ObstacleDetection();                                                    // для обнаружения препятствий 
