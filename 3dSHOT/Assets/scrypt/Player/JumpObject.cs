@@ -25,7 +25,8 @@ namespace Player
         void Start()
         {
             _rb = GetComponent<Rigidbody>();
-            Physics.gravity = new Vector3(0, _gravity);
+
+            Physics.gravity = new Vector3(0, _gravity);  // задаем стандартную гравитацуию
         }
 
         void FixedUpdate()

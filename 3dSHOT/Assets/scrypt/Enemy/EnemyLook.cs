@@ -16,13 +16,15 @@ namespace Enemy
         [SerializeField] bool _enabled = false;
 
 
-        [SerializeField] private ROTATOR _rotator;
+        //[SerializeField] private ROTATOR _rotator;
+
+        public bool _IsHitPlayer = false;
 
         //private void Awake()
         //{
         //    _rotator.enabled = false;
         //}
-        private void Start()                                                        // 3.0
+        private void Start()                                                        
         {
             transform.eulerAngles = new Vector3(0, RandomAngle(), 0);               // Поворачиваем врага в случайном направлении при появлении его на сцене.
                                                                                     // transform.eulerAngles = vector (0 horiz, random в игрек, 0 vertical)
@@ -48,7 +50,7 @@ namespace Enemy
             RaycastHit hit;                                                         // тот обьект в который обьект попал луч
                                                                                     // HIT - УДАР, попадание в обьект.
 
-            if (Physics.Raycast(ray, out hit, _targetDistance))                               // Запускаем СФЕРУ ПЕРЕД ЛУЧОМ С РАДИУСОМ 1А и, если он попал в какой-то объект, выполняем дальнейшее условие
+            if (Physics.Raycast(ray, out hit, _targetDistance))                     // Запускаем СФЕРУ ПЕРЕД ЛУЧОМ С РАДИУСОМ 1А и, если он попал в какой-то объект, выполняем дальнейшее условие
                                                                                     // (РАДИУС ДАЛЬНОСТЬ ЛУЧА, ВСТРЕТИВШИЙСЯ ОБЬЕКТ - HIT).
                                                                                     // сФЕРА НУЖНА ЧТОБЫ ТОНКИЙ ЛУЧ НЕ ПРОМАХНКЛСЯ МИМО ОБЬЕКТА.Сфера это расширение диаметра луча, можно сказать
             {
@@ -61,12 +63,14 @@ namespace Enemy
                 }
                 if (hit.collider.gameObject.CompareTag("Player"))     // Есди луч попадант в то то указали tag то выполняет действие
                 {
-                    //_rotator.enabled = true;
+                    _IsHitPlayer = true;
+
                     Debug.Log("Попал в игрока");
                 }
                 else
                 {
-                 // _rotator.enabled = false;
+                    _IsHitPlayer= false;
+
                     Debug.Log("игрок сбежал");
                 }
             }
