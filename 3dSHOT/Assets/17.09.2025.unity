@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterFloat
   _rb: {fileID: 9065415956266176237}
-  depthBetSub: 7
+  depthBetSub: 11
   displacementAmt: 1
   floaters: 4
   waterDrag: 1
@@ -1854,7 +1854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterFloat
   _rb: {fileID: 9065415956266176237}
-  depthBetSub: 7
+  depthBetSub: 11
   displacementAmt: 1
   floaters: 4
   waterDrag: 1
@@ -2334,7 +2334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterFloat
   _rb: {fileID: 9065415956266176237}
-  depthBetSub: 7
+  depthBetSub: 11
   displacementAmt: 1
   floaters: 4
   waterDrag: 1
@@ -2512,7 +2512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaterFloat
   _rb: {fileID: 9065415956266176237}
-  depthBetSub: 7
+  depthBetSub: 11
   displacementAmt: 1
   floaters: 4
   waterDrag: 1
@@ -2541,10 +2541,10 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5150671814410437190}
   serializedVersion: 5
-  m_Mass: 20
+  m_Mass: 30
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_CenterOfMass: {x: 0, y: -5, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
   m_IncludeLayers:
@@ -2553,7 +2553,7 @@ Rigidbody:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
+  m_ImplicitCom: 0
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
