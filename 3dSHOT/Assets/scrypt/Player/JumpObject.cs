@@ -78,6 +78,7 @@ namespace Player
 
         void LongJump()
         {
+           
             _jumpSpeed = _moveScrypt._run; // ОБРАЩАЕМСЯ к скорости падения скрипта ДВИЖЕНИЯ
                                            //_rb.GetComponent<Rigidbody>();
 

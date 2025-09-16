@@ -33,7 +33,6 @@ namespace Player
         void Start()
         {
             _rb = GetComponent<Rigidbody>();
-            
             _rb.freezeRotation = true;  // фиксируем ротацию капсулы (ЧТОБЫ НЕ ПАДАЛА)
         }
 
