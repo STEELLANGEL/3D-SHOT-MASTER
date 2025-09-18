@@ -15,7 +15,6 @@ namespace Enemy
 
         [SerializeField] bool _enabled = false;
 
-
         //[SerializeField] private ROTATOR _rotator;
 
         public bool _IsHitPlayer = false;
@@ -73,6 +72,7 @@ namespace Enemy
 
                     Debug.Log("игрок сбежал");
                 }
+
             }
 
             Debug.DrawRay(transform.position, transform.forward * 100f, Color.red); // Рисуем в редакторе луч, наглядно показывающий направление взгляда "Врага"

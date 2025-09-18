@@ -20,10 +20,12 @@ namespace Enemy
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag("Wall"))
+            if (collision.gameObject.CompareTag("Wall")
+                || collision.gameObject.CompareTag("Player"))
             {
-                _rb.linearVelocity = Vector3.zero;
+                Destroy(gameObject);
             }
+
         }
     }
 
