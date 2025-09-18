@@ -6,11 +6,6 @@ public class Shooting : MonoBehaviour
                                                        //transform.Translate(Vector3.forward * _speed * Time.deltaTime) для движения пули (задано постоянное движение префабу
 
     [SerializeField] public Transform _firePoint;  // точка огт куда вылетает снаряд (заранее созданный на поле обьект или точка)
-   
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -19,7 +14,6 @@ public class Shooting : MonoBehaviour
         {
             Shot();
         }
-
     }
 
     private void Shot()

@@ -29,7 +29,9 @@ public class ROTATOR : MonoBehaviour
         //_bullet.rotation = _hunter_Enemy.rotation;
     }
     private void Update()
+
     {
+    
         if (_lookAtTarget) // строгое слежение без задержки (телепортированное, резкий поворот)
         {
             _hunter_Enemy.LookAt(_target_Player);
@@ -41,8 +43,6 @@ public class ROTATOR : MonoBehaviour
         {
             _hunter_Enemy.rotation = Quaternion.Slerp(_hunter_Enemy.rotation,
                 Quaternion.LookRotation(_target_Player.position - _hunter_Enemy.position), _rotSpeed * Time.deltaTime);
-
-            //_bullet.rotation = _hunter_Enemy.rotation;
         }
 
         if (_rotToTargetAngle)  // плавный поворот к цели на такой же угол как у цели (врага к игроку)
