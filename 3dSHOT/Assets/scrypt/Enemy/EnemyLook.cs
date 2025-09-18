@@ -15,23 +15,70 @@ namespace Enemy
 
         [SerializeField] bool _enabled = false;
 
-        //[SerializeField] private ROTATOR _rotator;
+        bool _IsHitPlayer = false;
 
-        public bool _IsHitPlayer = false;
+        [SerializeField] public GameObject _bulletPrefab;  //пребаф пули (в пребаф ДОЛЖЕН быть скрипт Bullet, в котором прописано :
+                                                           //transform.Translate(Vector3.forward * _speed * Time.deltaTime) для движения пули (задано постоянное движение префабу
 
-        //private void Awake()
-        //{
-        //    _rotator.enabled = false;
-        //}
+        [SerializeField] public Transform _firePoint;  // точка огт куда вылетает снаряд (заранее созданный на поле обьект или точка)
+
+        float _shootTimer;
+
+        [SerializeField] float _delayShoot = 60f;
+
+        [SerializeField] GameObject _rotation;
+
         private void Start()                                                        
         {
             transform.eulerAngles = new Vector3(0, RandomAngle(), 0);               // Поворачиваем врага в случайном направлении при появлении его на сцене.
                                                                                     // transform.eulerAngles = vector (0 horiz, random в игрек, 0 vertical)
                                                                                     // transform.eulerAngles - поворачивает в сторону вектора
+
+            _shootTimer = _delayShoot;
+
+            _rotation.SetActive(false);
         }
         private void Update()
         {
-            ObstacleDetection();                                                    // для обнаружения препятствий 
+            ObstacleDetection();    // для обнаружения препятствий 
+
+            Hunt();
+        }
+
+        private void FollowTarget()
+        {
+            _rotation.SetActive(true);
+        }
+
+        private void LeaveTarget()
+        {
+            _rotation.SetActive(false);
+        }
+
+        public void Hunt()
+        {
+            if (_IsHitPlayer)
+            {
+                FollowTarget();
+
+                //_rotation.SetActive(true);
+
+                if (_shootTimer >= _delayShoot)
+                {
+                    Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation); // создать обьект(префаб пули, позиция точки выстрела, ротация точки выстрела)
+
+                    Debug.Log("обьект");
+
+                    _shootTimer = 1f;
+                }
+                _shootTimer += 1f;
+            }
+            if (!_IsHitPlayer)
+            {
+                _shootTimer = _delayShoot;
+
+                LeaveTarget();
+            }
         }
 
         private void ObstacleDetection()
@@ -82,10 +129,10 @@ namespace Enemy
 
         private float RandomAngle()
         {
-
             float randomAngle = Random.Range(-_rotationAngle, _rotationAngle);      // Создаём переменную с случайным числом из диапазона: от -_rotationAngle до +_rotationAngle.
 
             return randomAngle;                                                     // возвращаем самое рандомное число поворота врага
         }
+
     }
 }
