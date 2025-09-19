@@ -1506,9 +1506,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7578088098351286082, guid: e46439fcfa21e774ea7a42ae48a873d2, type: 3}
+      propertyPath: _jumpPlayer
+      value: 
+      objectReference: {fileID: 2742412130173082965}
+    - target: {fileID: 9036795436929866762, guid: e46439fcfa21e774ea7a42ae48a873d2, type: 3}
+      propertyPath: _moveScrypt
+      value: 
+      objectReference: {fileID: 2742412130173082964}
     - target: {fileID: 9036795436929866762, guid: e46439fcfa21e774ea7a42ae48a873d2, type: 3}
       propertyPath: _jumpImpulse
-      value: 40
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1963,6 +1971,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6927620267764340658, guid: e46439fcfa21e774ea7a42ae48a873d2, type: 3}
   m_PrefabInstance: {fileID: 1960384418534061079}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2742412130173082964 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7578088098351286082, guid: e46439fcfa21e774ea7a42ae48a873d2, type: 3}
+  m_PrefabInstance: {fileID: 1960384418534061079}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f52456181a536634da3eb3cfdd4b76e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.MoveObject
+--- !u!114 &2742412130173082965 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9036795436929866762, guid: e46439fcfa21e774ea7a42ae48a873d2, type: 3}
+  m_PrefabInstance: {fileID: 1960384418534061079}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af53940a71e02a438ed9617ee156d7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.JumpObject
 --- !u!1 &2827094304787449175
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,9 +1,11 @@
+using System;
 using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player
 {
+    [Serializable]
     public class JumpObject : MonoBehaviour
     {
         Rigidbody _rb;
@@ -20,7 +22,9 @@ namespace Player
 
         [SerializeField] float _jumpImpulse = 15f;
 
-        MoveObject _moveScrypt;  // переменная для обращения к другому скрипту (чтобы через нее взаимодействовать с переменными и методами другого скрипта
+        [SerializeField] MoveObject _moveScrypt;  // переменная для обращения к другому скрипту (чтобы через нее взаимодействовать с переменными и методами другого скрипта
+
+
 
         void Start()
         {

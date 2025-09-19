@@ -3,6 +3,7 @@ using System;
 
 namespace Player
 {
+    [Serializable]
     public class MoveObject : MonoBehaviour
     {
         [SerializeField] float _actualSpeed;
@@ -19,8 +20,6 @@ namespace Player
         [SerializeField] float _vertical;
 
         Vector3 _moveVector;
-
-        JumpObject _jumpPlayer; // переменная для обращения к другому скрипту (чтобы через нее взаимодействовать с переменными и методами другого скрипта
 
         Rigidbody _rb;
 
@@ -72,13 +71,13 @@ namespace Player
                     _rb.linearVelocity = new Vector3(0f, 0f, 0f);
                     // Останавливаем резко игрока если отпустили кнопку НА ЗЕМЛЕ1
                 }
-                if (!_isGround)
-                {
-                    _rb.linearVelocity = new Vector3(0f, _jumpPlayer._fallSpeed, 0f);
-                    // Останавливаем резко игрока если отпустили кнопку В ВОЗДУХЕ!!!
+                //if (!_isGround)
+                //{
+                //    _rb.linearVelocity = new Vector3(0f, _fallspeed, 0f);
+                //    // Останавливаем резко игрока если отпустили кнопку В ВОЗДУХЕ!!!
 
-                    // ОБРАЩАЕМСЯ к скорости падения скрипта прыжка
-                }
+                //    // ОБРАЩАЕМСЯ к скорости падения скрипта прыжка
+                //}
             }
 
             _moveVector = GetVector();
