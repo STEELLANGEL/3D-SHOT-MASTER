@@ -75,16 +75,16 @@ namespace Player
 
         void Jump()
         {
-            //_rb.GetComponent<Rigidbody>();
+            _jumpSpeed = _moveScrypt._step + _jumpImpulse;  // ќЅ–јўј≈ћ—я к скорости падени€ скрипта ƒ¬»∆≈Ќ»я
+            //расчет прыжка при ходьбе
 
-            _rb.linearVelocity = new Vector3(0, _jumpImpulse, 0);
+            _rb.linearVelocity = new Vector3(0, _jumpSpeed, 0);
         }
 
         void LongJump()
         {
-           
-            _jumpSpeed = _moveScrypt._run; // ќЅ–јўј≈ћ—я к скорости падени€ скрипта ƒ¬»∆≈Ќ»я
-                                           //_rb.GetComponent<Rigidbody>();
+            _jumpSpeed = _moveScrypt._run + _jumpImpulse; // ќЅ–јўј≈ћ—я к скорости падени€ скрипта ƒ¬»∆≈Ќ»я
+            //расчет прыжка при беге
 
             _rb.linearVelocity = new Vector3(0, _jumpSpeed, 0);
         }

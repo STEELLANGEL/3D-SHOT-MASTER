@@ -8,7 +8,7 @@ namespace Player
     {
         [SerializeField] float _actualSpeed;
         [SerializeField] public float _run = 20f;
-        [SerializeField] float _step = 10f;
+        [SerializeField] public float _step = 10f;
 
         [SerializeField] float _normalizedSpeed; // выравниваем скорость при движении по диагонали
 
