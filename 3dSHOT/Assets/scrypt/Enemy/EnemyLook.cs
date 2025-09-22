@@ -7,8 +7,7 @@ namespace Enemy
     {
         [SerializeField] private float _obstacleRange = 5.0f;  // расстояние до препятствия  , и если расстояние до препятствием меньше, чем эта переменная, враг развернётся.
 
-        [SerializeField] public float _targetDistance = 30f;   // растсояние до игрока (обьекта атаки)
-
+        [SerializeField] public float _targetDistance = 15f;   // растсояние до игрока (обьекта атаки)
 
         [SerializeField] private float _rotationAngle = 110f;                       // Переменная с максимальным и минимальным углом поворота врага
                                                                                     // при обнаружении препятствия.
@@ -28,9 +27,9 @@ namespace Enemy
 
         [SerializeField] GameObject _rotation;
 
-        float _huntTime = 20f;
+        float _huntTime = 1f;
 
-        [SerializeField] float _huntTimer;
+        [SerializeField] float _huntTimer = 60f;
 
         private void Start()
         {
@@ -41,10 +40,12 @@ namespace Enemy
             _shootTimer = _delayShoot;
 
             _rotation.SetActive(false);
+
+            Debug.Log("ROTATION OFF");
         }
-        private void Update()
+        private void FixedUpdate()
         {
-            ObstacleDetection();    // для обнаружения препятствий 
+            GetRayHit();    // для обнаружения препятствий
         }
 
         private void FollowTarget()
@@ -56,32 +57,62 @@ namespace Enemy
         {
             _rotation.SetActive(false);
 
+            _huntTime = 1f;
+
+            Debug.Log("HUNT STOP");
+
             //ObstacleDetection();
         }
 
-        private void ObstacleDetection()
+        private void GetRayHit()
         {
             Ray ray = new Ray(transform.position, transform.forward); // - так надо обьявлять, ВНИЗУ ДЛЯ НАГЛЯДНОСТИ)
 
+            RaycastHit hit;
 
-            RaycastHit[] hitColliders = Physics.RaycastAll(ray, _targetDistance);
-
-            foreach (RaycastHit hit in hitColliders)
+            if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {
-                    Debug.Log("Столкнуся с Игроком - " + hit.distance);
-
                     Hunt();
+
+                    Debug.Log("HUNT RUN");
                 }
 
-                //if (!hit.collider.gameObject.CompareTag("Player"))
-                //{
-                //    Debug.Log("Тютю Игрока - ");
+                if (!hit.collider.gameObject.CompareTag("Player"))
+                {
+                    _huntTime += 1f;
+                }
 
-                //    LeaveTarget();
-                //}
+                if (hit.collider.gameObject.CompareTag("Wall") && _huntTime >= _huntTimer)
+                {
+                    LeaveTarget();
+                }
+
             }
+
+            //RaycastHit[] hitColliders = Physics.RaycastAll(ray, _targetDistance);
+
+            //foreach (RaycastHit hit in hitColliders)
+            //{
+            //    if (hit.collider.gameObject.CompareTag("Player"))
+            //    {
+            //        Hunt();
+
+            //        Debug.Log("Столкнуся с Игроком - " + hit.distance);
+            //    }
+
+            //    if (!hit.collider.gameObject.CompareTag("Player"))
+            //    {
+            //        _huntTime += 1;
+            //    }
+
+            //    if (_huntTime == _huntTimer)
+            //    {
+            //        LeaveTarget();
+            //    }
+
+            //}
             //Debug.DrawRay(transform.position, transform.forward * _targetDistance, Color.red); // Рисуем в редакторе луч, наглядно показывающий направление взгляда "Врага"
             // transorm.position (позиция нашего игрока),
             // создаем луч впереди нашего обьекта на 100f вперед,и окрашиваем его в красный цвет.
@@ -92,6 +123,8 @@ namespace Enemy
 
         private void Hunt()
         {
+            _huntTime = 1f;
+
             FollowTarget();
 
             if (_shootTimer >= _delayShoot)
@@ -101,6 +134,7 @@ namespace Enemy
                 _shootTimer = 1f;
             }
             _shootTimer += 1f;
+
         }
 
         private float RandomAngle()

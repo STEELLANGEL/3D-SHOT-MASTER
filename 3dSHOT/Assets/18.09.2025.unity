@@ -2745,13 +2745,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _obstacleRange: 3
-  _targetDistance: 5
+  _targetDistance: 12
   _rotationAngle: 110
   _enabled: 0
   _bulletPrefab: {fileID: 3174866795649580162, guid: 069314765daf0c54f94437bb465b9c0c, type: 3}
   _firePoint: {fileID: 1507971868}
   _delayShoot: 60
   _rotation: {fileID: 1060016853}
+  _huntTimer: 600
 --- !u!1 &6338913207618039051
 GameObject:
   m_ObjectHideFlags: 0
