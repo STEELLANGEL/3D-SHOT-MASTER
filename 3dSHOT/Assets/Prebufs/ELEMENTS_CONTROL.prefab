@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4404140934087870454
+--- !u!1 &1428649357878848449
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7184534202999785804}
-  - component: {fileID: 2166826516264261183}
+  - component: {fileID: 6982933468636837341}
+  - component: {fileID: 1710295201864542777}
   m_Layer: 0
-  m_Name: ROTATOR
+  m_Name: ELEMENTS_CONTROL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7184534202999785804
+--- !u!4 &6982933468636837341
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4404140934087870454}
+  m_GameObject: {fileID: 1428649357878848449}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.4228, y: 37.99996, z: 10.72007}
+  m_LocalPosition: {x: -7.62824, y: 38, z: -0.52278}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2166826516264261183
+--- !u!114 &1710295201864542777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4404140934087870454}
+  m_GameObject: {fileID: 1428649357878848449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a7bc036e85ffaa45b3ee8b477735186, type: 3}
+  m_Script: {fileID: 11500000, guid: 8fe2f2e823496a74da525b5266ca10b1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ROTATOR
-  _target_Player: {fileID: 0}
-  _hunter_Enemy: {fileID: 0}
-  _rotSpeed: 1.5
-  _yNotRotation: 0
-  _lookAtTarget: 0
-  _rotToTarget: 1
-  _rotToTargetAngle: 0
-  _rotToAngle: 0
-  _customAngle: 90
+  m_EditorClassIdentifier: Assembly-CSharp::ELEMENTS_CONTROL
+  _ocean: {fileID: 0}

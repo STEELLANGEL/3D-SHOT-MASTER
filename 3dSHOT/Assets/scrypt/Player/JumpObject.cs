@@ -1,9 +1,11 @@
+using System;
 using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Player
 {
+    [Serializable]
     public class JumpObject : MonoBehaviour
     {
         Rigidbody _rb;
@@ -20,12 +22,15 @@ namespace Player
 
         [SerializeField] float _jumpImpulse = 15f;
 
-        MoveObject _moveScrypt;  // переменна€ дл€ обращени€ к другому скрипту (чтобы через нее взаимодействовать с переменными и методами другого скрипта
+        [SerializeField] MoveObject _moveScrypt;  // переменна€ дл€ обращени€ к другому скрипту (чтобы через нее взаимодействовать с переменными и методами другого скрипта
+
+
 
         void Start()
         {
             _rb = GetComponent<Rigidbody>();
-            Physics.gravity = new Vector3(0, _gravity);
+
+            Physics.gravity = new Vector3(0, _gravity);  // задаем стандартную гравитацуию
         }
 
         void FixedUpdate()
@@ -54,7 +59,6 @@ namespace Player
 
                 //_rb.freezeRotation = false;
             }
-
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -71,18 +75,18 @@ namespace Player
 
         void Jump()
         {
-            //_rb.GetComponent<Rigidbody>();
+            _jumpSpeed = _moveScrypt._step + _jumpImpulse;  // ќЅ–јўј≈ћ—я к скорости падени€ скрипта ƒ¬»∆≈Ќ»я
+            //расчет прыжка при ходьбе
 
-            _rb.linearVelocity = new Vector3(0, _jumpImpulse, 0);
+            _rb.linearVelocity = new Vector3(0, _jumpSpeed, 0);
         }
 
         void LongJump()
         {
-            _jumpSpeed = _moveScrypt._run; // ќЅ–јўј≈ћ—я к скорости падени€ скрипта ƒ¬»∆≈Ќ»я
-                                           //_rb.GetComponent<Rigidbody>();
+            _jumpSpeed = _moveScrypt._run + _jumpImpulse; // ќЅ–јўј≈ћ—я к скорости падени€ скрипта ƒ¬»∆≈Ќ»я
+            //расчет прыжка при беге
 
             _rb.linearVelocity = new Vector3(0, _jumpSpeed, 0);
         }
     }
-
 }

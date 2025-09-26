@@ -7,83 +7,142 @@ namespace Enemy
     {
         [SerializeField] private float _obstacleRange = 5.0f;  // расстояние до препятствия  , и если расстояние до препятствием меньше, чем эта переменная, враг развернётся.
 
-        [SerializeField] public float _targetDistance = 10f;   // растсояние до игрока (обьекта атаки)
-                                                  
+        [SerializeField] public float _targetDistance = 15f;   // растсояние до игрока (обьекта атаки)
 
         [SerializeField] private float _rotationAngle = 110f;                       // Переменная с максимальным и минимальным углом поворота врага
                                                                                     // при обнаружении препятствия.
 
         [SerializeField] bool _enabled = false;
 
+        bool _IsHitPlayer = false;
 
-        [SerializeField] private ROTATOR _rotator;
+        [SerializeField] public GameObject _bulletPrefab;  //пребаф пули (в пребаф ДОЛЖЕН быть скрипт Bullet, в котором прописано :
+                                                           //transform.Translate(Vector3.forward * _speed * Time.deltaTime) для движения пули (задано постоянное движение префабу
 
-        //private void Awake()
-        //{
-        //    _rotator.enabled = false;
-        //}
-        private void Start()                                                        // 3.0
+        [SerializeField] public Transform _firePoint;  // точка огт куда вылетает снаряд (заранее созданный на поле обьект или точка)
+
+        float _shootTimer;
+
+        [SerializeField] float _delayShoot = 60f;
+
+        [SerializeField] GameObject _rotation;
+
+        float _huntTime = 1f;
+
+        [SerializeField] float _huntTimer = 60f;
+
+        private void Start()
         {
             transform.eulerAngles = new Vector3(0, RandomAngle(), 0);               // Поворачиваем врага в случайном направлении при появлении его на сцене.
                                                                                     // transform.eulerAngles = vector (0 horiz, random в игрек, 0 vertical)
                                                                                     // transform.eulerAngles - поворачивает в сторону вектора
+
+            _shootTimer = _delayShoot;
+
+            _rotation.SetActive(false);
+
+            Debug.Log("ROTATION OFF");
+        }
+        private void FixedUpdate()
+        {
+            GetRayHit();    // для обнаружения препятствий
         }
 
-
-        private void Update()
+        private void FollowTarget()
         {
-            ObstacleDetection();                                                    // для обнаружения препятствий 
+            _rotation.SetActive(true);
         }
 
-        private void ObstacleDetection()
+        private void LeaveTarget()
         {
-            ////Ray ray = new Ray(transform.position, transform.forward) - так надо обьявлять, ВНИЗУ ДЛЯ НАГЛЯДНОСТИ)//////
-            ///
-            Ray ray = new Ray();                                                    // Создаём переменную типа "Ray" (Луч).
+            _rotation.SetActive(false);
 
-            ray.origin = transform.position;                                        // Задаём "Лучу" начало. ((origin) начальная точка == (transform.position) позиция оьъбьекта (нашего от куда луч)
+            _huntTime = 1f;
 
-            ray.direction = transform.forward;                                      //Этот код устанавливает направление луча (ray) вперёд от объекта (transform). 
-                                                                                    // Задаём "Лучу" направление. (transform.forward - движем вперед)
+            Debug.Log("HUNT STOP");
 
+            //ObstacleDetection();
+        }
 
-            RaycastHit hit;                                                         // тот обьект в который обьект попал луч
-                                                                                    // HIT - УДАР, попадание в обьект.
+        private void GetRayHit()
+        {
+            Ray ray = new Ray(transform.position, transform.forward); // - так надо обьявлять, ВНИЗУ ДЛЯ НАГЛЯДНОСТИ)
 
-            if (Physics.Raycast(ray, out hit, _targetDistance))                               // Запускаем СФЕРУ ПЕРЕД ЛУЧОМ С РАДИУСОМ 1А и, если он попал в какой-то объект, выполняем дальнейшее условие
-                                                                                    // (РАДИУС ДАЛЬНОСТЬ ЛУЧА, ВСТРЕТИВШИЙСЯ ОБЬЕКТ - HIT).
-                                                                                    // сФЕРА НУЖНА ЧТОБЫ ТОНКИЙ ЛУЧ НЕ ПРОМАХНКЛСЯ МИМО ОБЬЕКТА.Сфера это расширение диаметра луча, можно сказать
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
             {
-                if (hit.distance <= _obstacleRange)                                 // Если дистанция между началом луча и объектом в, который он попал,                                                                   // меньше или ровна переменной _obstacleRange , выполняем дальнейшее условие.
+                if (hit.collider.gameObject.CompareTag("Player"))
                 {
-                    transform.eulerAngles = new Vector3(0, RandomAngle(), 0);       // поворачиваем наш обьект на созданный вектор (рандомное направление)
-                                                                                    // по оси ROTATION Y (именно поворот)
+                    Hunt();
 
-                    Debug.Log("попал по стенке");
+                    Debug.Log("HUNT RUN");
                 }
-                if (hit.collider.gameObject.CompareTag("Player"))     // Есди луч попадант в то то указали tag то выполняет действие
+
+                if (!hit.collider.gameObject.CompareTag("Player"))
                 {
-                    //_rotator.enabled = true;
-                    Debug.Log("Попал в игрока");
+                    _huntTime += 1f;
                 }
-                else
+
+                if (hit.collider.gameObject.CompareTag("Wall") && _huntTime >= _huntTimer)
                 {
-                 // _rotator.enabled = false;
-                    Debug.Log("игрок сбежал");
+                    LeaveTarget();
                 }
+
             }
 
-            Debug.DrawRay(transform.position, transform.forward * 100f, Color.red); // Рисуем в редакторе луч, наглядно показывающий направление взгляда "Врага"
-                                                                                    // transorm.position (позиция нашего игрока),
-                                                                                    // создаем луч впереди нашего обьекта на 100f вперед,и окрашиваем его в красный цвет.
+            //RaycastHit[] hitColliders = Physics.RaycastAll(ray, _targetDistance);
+
+            //foreach (RaycastHit hit in hitColliders)
+            //{
+            //    if (hit.collider.gameObject.CompareTag("Player"))
+            //    {
+            //        Hunt();
+
+            //        Debug.Log("Столкнуся с Игроком - " + hit.distance);
+            //    }
+
+            //    if (!hit.collider.gameObject.CompareTag("Player"))
+            //    {
+            //        _huntTime += 1;
+            //    }
+
+            //    if (_huntTime == _huntTimer)
+            //    {
+            //        LeaveTarget();
+            //    }
+
+            //}
+            //Debug.DrawRay(transform.position, transform.forward * _targetDistance, Color.red); // Рисуем в редакторе луч, наглядно показывающий направление взгляда "Врага"
+            // transorm.position (позиция нашего игрока),
+            // создаем луч впереди нашего обьекта на 100f вперед,и окрашиваем его в красный цвет.
+
+            Debug.DrawRay(transform.position, transform.forward * _targetDistance, Color.red);
+
+        }
+
+        private void Hunt()
+        {
+            _huntTime = 1f;
+
+            FollowTarget();
+
+            if (_shootTimer >= _delayShoot)
+            {
+                Instantiate(_bulletPrefab, _firePoint.position, _firePoint.rotation); // создать обьект(префаб пули, позиция точки выстрела, ротация точки выстрела)
+
+                _shootTimer = 1f;
+            }
+            _shootTimer += 1f;
+
         }
 
         private float RandomAngle()
         {
-
             float randomAngle = Random.Range(-_rotationAngle, _rotationAngle);      // Создаём переменную с случайным числом из диапазона: от -_rotationAngle до +_rotationAngle.
 
             return randomAngle;                                                     // возвращаем самое рандомное число поворота врага
         }
+
     }
 }

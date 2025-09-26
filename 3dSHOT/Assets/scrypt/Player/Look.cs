@@ -23,6 +23,7 @@ namespace Player
             _mousePositionY = transform.eulerAngles.y;                                               // Тоже самое с Y
         }
 
+
         private void Update()
         {
             LookInput();

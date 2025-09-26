@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Wall
   - PlayerField
+  - PlayField
+  - Bullet
   layers:
   - Default
   - TransparentFX
